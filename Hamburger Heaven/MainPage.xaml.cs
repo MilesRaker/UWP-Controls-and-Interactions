@@ -25,6 +25,45 @@ namespace Hamburger_Heaven
         public MainPage()
         {
             this.InitializeComponent();
+            BackButton.Visibility = Visibility.Collapsed;
+            MyFrame.Navigate(typeof(Finance));
+            Title.Text = "Finance";
+            Finance.IsSelected = true;
+            
+        }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Finance.IsSelected)
+            {
+                BackButton.Visibility = Visibility.Collapsed;
+                MyFrame.Navigate(typeof(Finance));
+                Title.Text = "Financial";
+            }else if (Food.IsSelected)
+            {
+                BackButton.Visibility = Visibility.Visible;
+                MyFrame.Navigate(typeof(Food));
+                Title.Text = "Food";
+            }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyFrame.CanGoBack)
+            {
+                MyFrame.GoBack();
+                Finance.IsSelected = true;
+            }
         }
     }
 }
